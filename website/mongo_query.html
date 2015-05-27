@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Broadway Database: Search!</title>
+		<style type="text/css">
+			*{
+				font-family: Helvetica;
+			}
+			.header{
+				color: Black;
+				font-weight: 100;
+			}
+			.options{
+				font-weight: 200;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<h1>The Broadway Database</h1>
+		</div>	
+		<div id="link_2_page2">
+			<a href="/input">Input Your Own Data</a>
+		</div>
+		<div class="site_description">
+			<p>The Broadway Database is a website in which you can search a database of Broadway musicals. You can also input data into the database for other people to search and see. This website was written by Emily Ross, a sophomore at the Nueva High School in San Mateo, California. She hopes you enjoy using the site!</p>
+		</div>
+		<div class="choose">
+			<p>Search the
+				<select name="category">
+					<option value="False" selected="">choose a category</option>
+					<option value="title">Title</option>
+					<option value="writers">Lyricists/Composers/Writers</option>
+					<option value="opening_year">Opening Year(s)</option>
+					<option value="instruments">Instruments</option>
+					<option value="songs">Songs</option>
+					<option value="main_character">Main Characters</option>
+					<option value="vox">Vocal Part</option>
+					<option value="vrange">Vocal Range</option>
+					<option value="age">Age</option>
+					<option value="gender">Gender</option>
+				</select>
+				 category for
+				<span>
+					<input type="search" name="search"
+						placeholder="Enter search term" />
+					<input type="submit" value="Search" />
+				</span>
+			</p>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Broadway Database: Input!</title>
+		<style type="text/css">
+			*{
+				font-family: Helvetica;
+			}
+			.header{
+				font-weight: 300;
+			}
+			p, .input{
+				font-weight: 100;
+			}
+			.entry{
+				margin-left: 35px;
+			}
+		</style>
+		<script type="text/javascript">
+			var mainNum = 1;
+			function character_info() {
+			var characterGroup = document.getElementById('main_character_infos');
+			var mainCharacter = document.createElement('div');
+			mainCharacter.innerHTML = "Main Character " + mainNum + ": <div class=\"entry\">Name: <input type=\"text\" name=\"main_character\" /></div>" + "<div class=\"entry\">Vocal Part: Soprano <input type=\"radio\" name=\"vox\" value=\"Soprano\" checked=\"checked\" /> Mezzo Soprano <input type=\"radio\" name=\"vox\" value=\"Mezzo Soprano\" /> Alto <input type=\"radio\" name=\"vox\" value=\"Alto\" /> Tenor <input type=\"radio\" name=\"vox\" value=\"Tenor\" /> Baritone <input type=\"radio\" name=\"vox\" value=\"Baritone\" /> Bass <input type=\"radio\" name=\"vox\" value=\"Bass\" /></div><div class=\"entry\">Belt: Yes <input type=\"radio\" name=\"belt\" value=\"yes\" checked=\"checked\" /> No <input type=\"radio\" name=\"belt\" value=\"no\" /></div><div class=\"entry\">Vocal Range: <input type=\"text\" name=\"vrange\" /></div><div class=\"entry\">Age: <input type=\"text\" name=\"age\"/></div><div class=\"entry\">Gender: Female <input type=\"radio\" name=\"gender\" value=\"Female\" /> Male <input type=\"radio\" name=\"gender\" value=\"Male\" /> None of the above <input type=\"radio\" name=\"gender\" value=\"none\" /></div> ";
+			characterGroup.appendChild(mainCharacter);
+			mainNum += 1
+			return false;
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="header">
+			<h1>The Broadway Database</h1>
+		</div>	
+		<div id="link_2_page2">
+			<a href="/">Search the Database</a>
+		</div>
+		<div class="site_description">
+			<p>
+				The Broadway Database is a website in which you can search a database of Broadway musicals. You can also input data into the database for other people to search and see. This website was written by Emily Ross, a sophomore at the Nueva High School in San Mateo, California. She hopes you enjoy using the site!
+			</p>
+		</div>
+		<div class="input">
+			<p>
+				You can input (complete, please) info on a musical, and that musical will be in the Broadway Database!
+			</p>
+			<form>
+				Title:
+				<input type="text" name="title">
+				<br />
+				Lyricists, Composers, Writers:
+				<input type="text" name="writers">
+				<br />
+				Opening Year(s):
+				<input type="text" name="opening_year">
+				<br />
+				Instruments:
+				<input type="text" name="instruments">
+				<br />
+				Songs:
+				<input type="text" name="songs">
+				<br />
+				<button onclick="return character_info()">Add a Main Character</button>
+				<div id="main_character_infos"></div>
+				<br />
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+	</body>
+</html>
