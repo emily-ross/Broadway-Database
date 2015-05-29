@@ -2,75 +2,63 @@ import pymongo
 import pprint
 
 from pymongo import MongoClient
+from flask import request
 
 client = MongoClient()
 db = client.Broadway
 collection = db.musicals
 
-def get_user_input():
+def get_user_input(request):
 	show = {}
+	mainNum = 1
+	mainNum = str(mainNum)
 
-	print "Please enter the title of a Broadway musical."
-	title = raw_input()
+	title = request.form["title"]
 	show["title"] = title
 
-	print "Please enter the composer(s), lyricsist(s), and book writer(s) of", title, "with commas in between."
-	writers = raw_input()
-	show["playwrights"] = writers.split(", ")
+	writers = request.form["writers"]
+	if writers.find(",") == True:
+		show["playwrights"] = writers.split(", ")
+	else:
+		show["playwright"] = writers
 
-	print "Please enter the year that", title, "opened on Broadway. If", title, "had a revival (or multiple), enter the opening years in order with commas in between."
-	opening_year = raw_input()
+	opening_year = request.form["opening_year"]
 	if opening_year.find(",") == True:
-		show["openings"] = [opening_year.split(", ")]
+		show["openings"] = int([opening_year.split(", ")])
 	else:
 		show["opening"] = opening_year
 
-	print "Please enter the instruments for which", title, "is scored with commas in between."
-	instruments = raw_input()
-	show["instruments"] = instruments.split(", ")
+	instruments = request.form["instruments"]
+	if instruments.find(",") == True:
+		show["instruments"] = instruments.split(", ")
+	else:
+		show["instrument"] = instruments
 
-	print "Please enter the songs in", title, "in quotes, with commas to separate them."
-	songs = raw_input()
+	songs = request.form["songs"]
 	show["songs"] = [songs.split(",")]
 
-	print "How many main characters does", title, "have?"
-	character_num = int(raw_input())
-	n = 0
-	show["main_characters"] = []
-	
-	while n < character_num:
-		if n == 0:
-			print "Please enter the name of the first main character in", title,"."
-		else:
-			print "Please enter the name of the next main character."
-		main_character = raw_input()
+	while request.form.has_key("main_character" + mainNum):
+		main_character = request.form["main_character" + mainNum]
 		character = {}
 		character["name"] = main_character
 
-		print "What vocal part is", main_character,"?"
-		vox = raw_input()
+		vox = request.form["vox" + mainNum]
 		character["vocal_part"] = vox
 
-		print "Does", main_character, "belt?"
-		belt = raw_input()
+		belt = request.form["belt" + mainNum]
 		character["belt"] = belt
 
-		print "What is", main_character,"'s range?"
-		vrange = raw_input()
+		vrange = request.form["vrange" + mainNum]
 		character["vocal_range"] = vrange
 
-		print "How old is", main_character,"?"
-		age = raw_input()
+		age = int(request.form["age" + mainNum])
 		character["age"] = age
 
-		print "What gender is", main_character,"?"
-		gender = raw_input()
+		gender = request.form["gender" + mainNum]
 		character["gender"] = gender
 		show["main_characters"].append(character)
-		n = n + 1
-	return show
 
-doc = get_user_input()
-pp = pprint.PrettyPrinter(indent = 4)
-pp.pprint(doc)
-collection.insert(doc)
+		mainNum = mainNum + 1
+
+	collection.insert(show)
+	return show

@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import sys
-sys.path.append(/user/Desktop/Compsci/Mongo Project/mongodb-project/)
+sys.path.append("/Users/emiross/Desktop/Compsci/Mongo Project/mongodb-project/")
 import mongo_ask_insert
 
 app = Flask(__name__, template_folder='../website')
@@ -11,8 +11,9 @@ def serve_app():
 
 @app.route('/input', methods=['GET', 'POST'])
 def serve_input():
+	show = None
 	if request.method == 'POST':
-		get_user_input()
-	return render_template('mongo_input.html')
+		show = mongo_ask_insert.get_user_input(request)
+	return render_template('mongo_input.html', show=show)
 	
 app.run(debug=True)

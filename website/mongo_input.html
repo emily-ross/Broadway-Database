@@ -15,13 +15,16 @@
 			.entry{
 				margin-left: 35px;
 			}
+			#printDoc{
+				font-weight: 100;
+			}
 		</style>
 		<script type="text/javascript">
 			var mainNum = 1;
 			function character_info() {
 			var characterGroup = document.getElementById('main_character_infos');
 			var mainCharacter = document.createElement('div');
-			mainCharacter.innerHTML = "Main Character " + mainNum + ": <div class=\"entry\">Name: <input type=\"text\" name=\"main_character\" /></div>" + "<div class=\"entry\">Vocal Part: Soprano <input type=\"radio\" name=\"vox\" value=\"Soprano\" checked=\"checked\" /> Mezzo Soprano <input type=\"radio\" name=\"vox\" value=\"Mezzo Soprano\" /> Alto <input type=\"radio\" name=\"vox\" value=\"Alto\" /> Tenor <input type=\"radio\" name=\"vox\" value=\"Tenor\" /> Baritone <input type=\"radio\" name=\"vox\" value=\"Baritone\" /> Bass <input type=\"radio\" name=\"vox\" value=\"Bass\" /></div><div class=\"entry\">Belt: Yes <input type=\"radio\" name=\"belt\" value=\"yes\" checked=\"checked\" /> No <input type=\"radio\" name=\"belt\" value=\"no\" /></div><div class=\"entry\">Vocal Range: <input type=\"text\" name=\"vrange\" /></div><div class=\"entry\">Age: <input type=\"text\" name=\"age\"/></div><div class=\"entry\">Gender: Female <input type=\"radio\" name=\"gender\" value=\"Female\" /> Male <input type=\"radio\" name=\"gender\" value=\"Male\" /> None of the above <input type=\"radio\" name=\"gender\" value=\"none\" /></div> ";
+			mainCharacter.innerHTML = "Main Character " + mainNum + ": <div class=\"entry\">Name: <input type=\"text\" name=\"main_character" + mainNum + " \"/></div>" + "<div class=\"entry\">Vocal Part: Soprano <input type=\"radio\" name=\"vox" + mainNum + " \" value=\"Soprano\" checked=\"checked\" /> Mezzo Soprano <input type=\"radio\" name=\"vox" + mainNum + " \" value=\"Mezzo Soprano\" /> Alto <input type=\"radio\" name=\"vox" + mainNum + " \" value=\"Alto\" /> Tenor <input type=\"radio\" name=" + mainNum + " \"vox\" value=\"Tenor\" /> Baritone <input type=\"radio\" name=\"vox" + mainNum + " \" value=\"Baritone\" /> Bass <input type=\"radio\" name=\"vox" + mainNum + " \" value=\"Bass\" /></div><div class=\"entry\">Belt: Yes <input type=\"radio\" name=\"belt" + mainNum + " \" value=\"yes\" checked=\"checked\" /> No <input type=\"radio\" name=\"belt" + mainNum + " \" value=\"no\" /></div><div class=\"entry\">Vocal Range: <input type=\"text\" name=\"vrange" + mainNum + " \" /></div><div class=\"entry\">Age: <input type=\"text\" name=\"age" + mainNum + " \"/></div><div class=\"entry\">Gender: Female <input type=\"radio\" name=\"gender" + mainNum + " \" value=\"Female\" /> Male <input type=\"radio\" name=\"gender" + mainNum + " \" value=\"Male\" /> None of the above <input type=\"radio\" name=\"gender" + mainNum + " \" value=\"none\" /></div> ";
 			characterGroup.appendChild(mainCharacter);
 			mainNum += 1
 			return false;
@@ -45,7 +48,7 @@
 			<p>
 				You can input (complete, please) info on a musical, and that musical will be in the Broadway Database!
 			</p>
-			<form>
+			<form method="POST">
 				Title:
 				<input type="text" name="title">
 				<br />
@@ -66,6 +69,9 @@
 				<br />
 				<input type="submit" value="Submit">
 			</form>
+		</div>
+		<div id="printDoc">
+			{{show}}
 		</div>
 	</body>
 </html>
