@@ -27,7 +27,8 @@
 			<p>The Broadway Database is a website in which you can search a database of Broadway musicals. You can also input data into the database for other people to search and see. This website was written by Emily Ross, a sophomore at the Nueva High School in San Mateo, California. She hopes you enjoy using the site!</p>
 		</div>
 		<div class="choose">
-			<p>Search the
+			<form method="POST">
+				<p>Search the
 				<select name="category">
 					<option value="False" selected="">choose a category</option>
 					<option value="title">Title</option>
@@ -48,6 +49,43 @@
 					<input type="submit" value="Search" />
 				</span>
 			</p>
+			</form>
+		</div>
+		<div id="queryResult">
+			{% if result %}
+				{% for doc in result %}
+					<div>
+						{{doc.title}}
+						{% if doc.playwright %}
+							{{doc.playwright}}
+						{% endif %}
+						{% if doc.playwrights %}
+							{% for playwright in doc.playwrights %}
+								{{playwright}}
+							{% endfor %}
+						{% endif %}
+						{% if doc.opening %}
+							{{doc.opening}}
+						{% endif %}
+						{% if doc.openings %}
+							{% for opening in doc.openings %}
+								{{opening}}
+							{% endfor %}
+						{% endif %}
+						{% if doc.instrument %}
+							{{doc.instrument}}
+						{% endif %}
+						{% if doc.instruments %}
+							{% for instrument in doc.instruments %}
+								{{instrument}}
+							{% endfor %}
+						{% endif %}
+						{% for song in doc.songs %}
+							{{song}}
+						{% endfor %}
+					</div>
+				{% endfor %}
+			{% endif %}
 		</div>
 	</body>
 
